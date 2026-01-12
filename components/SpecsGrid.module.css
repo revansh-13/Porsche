@@ -1,0 +1,118 @@
+.section {
+    position: relative;
+    z-index: 20;
+    /* Ensure it goes over the fixed car */
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    /* Solid background to cover car */
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+    padding: 100px 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 300px);
+    gap: 24px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(20px);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-8px);
+}
+
+.large {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.large::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 60%);
+    pointer-events: none;
+}
+
+.wide {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #222 0%, #111 100%);
+}
+
+.label {
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.value {
+    background: linear-gradient(to right, #fff, #999);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 10px 0;
+    letter-spacing: -0.03em;
+}
+
+.desc {
+    color: #aaa;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 90%;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+
+    .large,
+    .wide {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .large,
+    .wide {
+        grid-column: span 1;
+    }
+
+    .value {
+        font-size: 2.5rem;
+    }
+}
